@@ -1,4 +1,4 @@
-from src import app
+from src import app, token_authenticator, token_data
 from flask import request, make_response
 from src.models.countries_model import countries_model
 import os
@@ -7,6 +7,7 @@ import time
 obj = countries_model()
 
 @app.route("/countries/create", methods=["POST"])
+@token_authenticator()
 def add_country():
     try:
         data = request.form
@@ -16,12 +17,13 @@ def add_country():
         make_response({"Error":"Contact developer"},500)
 
 @app.route("/countries/upload_flag", methods=["POST"])
+@token_authenticator()
 def upload_flag():
     file = request.files['file']
     current_time = str(time.time())
     time_frags = current_time.split(".")
     final_filename = time_frags[0]+time_frags[1]+os.path.splitext(file.filename)[1]
-    file.save(os.path.join("C:/Users/Anuja Ghegadmal/Documents/Projects/mvc_cricket_api/src/flags",final_filename))
+    file.save(os.path.join(app.root_path+"/flags",final_filename))
     return make_response({"filename":"flags/"+final_filename},200)
 
 @app.route("/countries/read")
@@ -32,19 +34,21 @@ def list_countries():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
         
-@app.route("/countries/update/<id>", methods=["POST"])
-def update_country(id):
+@app.route("/countries/update/<country_id>", methods=["POST"])
+@token_authenticator()
+def update_country(country_id):
     try:
         data = request.form
-        return obj.update_country_model(data,id)
+        return obj.update_country_model(data,country_id)
     
     except Exception as e:
         make_response({"Error":"Contact developer"},500) 
 
-@app.route("/countries/delete/<id>")
-def delete_country(id):
+@app.route("/countries/delete/<country_id>")
+@token_authenticator()
+def delete_country(country_id):
     try:
-        return obj.delete_country_model(id)
+        return obj.delete_country_model(country_id)
     
     except Exception as e:
         make_response({"Error":"Contact developer"},500) 
