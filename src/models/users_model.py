@@ -17,7 +17,7 @@ class users_model:
             fd = self.cursor.fetchall()
             if len(fd)>0:
                 # print(fd)
-                token = jwt.encode({"data":fd,"exp":datetime.datetime.utcnow()+datetime.timedelta(minutes=500)},"EncryptionKey")
+                token = jwt.encode({"data":fd,"exp":datetime.datetime.utcnow()+datetime.timedelta(days=100)},"EncryptionKey")
                 return make_response({"payload":token},200)
             else:
                 return make_response({"Error":"Please check EMAIL or PASSWORD"},403)

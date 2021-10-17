@@ -27,7 +27,8 @@ def add_user():
     
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
-
+        
+# upload_profile_picture() used to upload profile_picture of players as well
 @app.route("/users/upload_profile_picture", methods=["POST"])
 @token_authenticator()
 def upload_profile_picture():
