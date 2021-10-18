@@ -17,6 +17,7 @@ class venues_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
     def list_venues_model(self):
         try:
             self.cursor.execute("SELECT * FROM venues")
@@ -26,6 +27,7 @@ class venues_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
     def update_venue_model(self,data,venue_id):
         try:
             self.cursor.execute("UPDATE venues SET venue='"+data["venue"]+"', website='"+data["website"]+"' WHERE id="+str(venue_id))
@@ -33,6 +35,7 @@ class venues_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+            
             
     def delete_venue_model(self,venue_id):
         try:

@@ -17,6 +17,7 @@ class matches_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
     def list_match_model(self):
         try:
             self.cursor.execute("SELECT * FROM matches")
@@ -25,6 +26,7 @@ class matches_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+            
             
     def read_single_match_model(self,match_id):
         try:
@@ -35,6 +37,17 @@ class matches_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
+    def read_single_team_matches_model(self,team_id):
+        try:
+            self.cursor.execute("SELECT * FROM matches WHERE team_1="+str(team_id)+" OR team_2="+str(team_id))
+            fd = self.cursor.fetchall()
+            return make_response({"payload":fd},200)
+        
+        except Exception as e:
+            make_response({"Error":str(e)},500)
+            
+            
     def update_match_model(self,data,match_id):
         try:
             self.cursor.execute("UPDATE matches SET winner='"+data["winner"]+"', looser='"+data["looser"]+"', man_of_the_match='"+data["man_of_the_match"]+"', bowler_of_the_match="+data["bowler_of_the_match"]+", best_fielder="+data["best_fielder"]+" WHERE id="+str(match_id))
@@ -42,6 +55,7 @@ class matches_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+            
             
     def delete_match_model(self,match_id):
         try:

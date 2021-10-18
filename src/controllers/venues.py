@@ -6,6 +6,7 @@ import time
 
 obj = venues_model()
 
+# Add Venue
 @app.route("/venues/create", methods=["POST"])
 @token_authenticator()
 def add_venue():
@@ -16,6 +17,7 @@ def add_venue():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
 
+# Read Venue
 @app.route("/venues/read")
 def list_venues():
     try:
@@ -23,7 +25,8 @@ def list_venues():
     
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
-        
+    
+# Update Venue    
 @app.route("/venues/update/<venue_id>", methods=["POST"])
 @token_authenticator()
 def update_venue(venue_id):
@@ -34,6 +37,7 @@ def update_venue(venue_id):
     except Exception as e:
         make_response({"Error":"Contact developer"},500) 
 
+# Delete Venue
 @app.route("/venues/delete/<venue_id>")
 @token_authenticator()
 def delete_venue(venue_id):

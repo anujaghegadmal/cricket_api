@@ -6,6 +6,7 @@ import time
 
 obj = players_model()
 
+# Add Player
 @app.route("/players/create", methods=["POST"])
 @token_authenticator()
 def add_player():
@@ -16,6 +17,7 @@ def add_player():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
 
+# Read Players
 @app.route("/players/read")
 def list_player():
     try:
@@ -24,6 +26,7 @@ def list_player():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
     
+# Read Single Player
 @app.route("/players/read_single_player/<player_id>")
 def read_single_player(player_id):
     try:
@@ -32,6 +35,7 @@ def read_single_player(player_id):
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
         
+# Update Player        
 @app.route("/players/update/<player_id>", methods=["POST"])
 @token_authenticator()
 def update_player(player_id):
@@ -42,6 +46,7 @@ def update_player(player_id):
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
 
+# Delete Player
 @app.route("/players/delete/<player_id>")
 @token_authenticator()
 def delete_player(player_id):

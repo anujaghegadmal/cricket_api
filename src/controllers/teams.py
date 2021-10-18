@@ -6,6 +6,7 @@ import time
 
 obj = teams_model()
 
+# Add Team
 @app.route("/teams/create", methods=["POST"])
 @token_authenticator()
 def add_team():
@@ -16,6 +17,7 @@ def add_team():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
         
+# Upload Team logo
 @app.route("/teams/upload_team_logo", methods=["POST"])
 @token_authenticator()
 def upload_team_logo():
@@ -26,6 +28,7 @@ def upload_team_logo():
     file.save(os.path.join(app.root_path+"/team_logo",final_filename))
     return make_response({"filename":"team_logo/"+final_filename},200)
 
+# Read Teams
 @app.route("/teams/read")
 def list_teams():
     try:
@@ -34,6 +37,7 @@ def list_teams():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
         
+# Read Single Team
 @app.route("/teams/read_single_team/<team_id>")
 def read_single_team(team_id):
     try:
@@ -42,6 +46,7 @@ def read_single_team(team_id):
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
         
+# Update Team
 @app.route("/teams/update/<team_id>", methods=["POST"])
 @token_authenticator()
 def update_team(team_id):
@@ -52,6 +57,7 @@ def update_team(team_id):
     except Exception as e:
         make_response({"Error":"Contact developer"},500) 
 
+# Delete Team
 @app.route("/teams/delete/<team_id>")
 @token_authenticator()
 def delete_team(team_id):

@@ -17,6 +17,7 @@ class players_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
     def list_player_model(self):
         try:
             self.cursor.execute("SELECT * FROM players")
@@ -25,6 +26,7 @@ class players_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+            
             
     def read_single_player_model(self,player_id):
         try:
@@ -35,6 +37,7 @@ class players_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
     def update_player_model(self,data,player_id):
         try:
             self.cursor.execute("UPDATE players SET full_name='"+data["full_name"]+"', profile_picture='"+data["profile_picture"]+"', description='"+data["description"]+"', team_id="+data["team_id"]+", country_id="+data["country_id"]+" WHERE id="+str(player_id))
@@ -42,6 +45,7 @@ class players_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+            
             
     def delete_player_model(self,player_id):
         try:

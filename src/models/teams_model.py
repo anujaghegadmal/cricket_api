@@ -17,6 +17,7 @@ class teams_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
     def list_teams_model(self):
         try:
             self.cursor.execute("SELECT * FROM teams")
@@ -25,6 +26,7 @@ class teams_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+            
             
     def read_single_team_model(self,team_id):
         try:
@@ -35,6 +37,7 @@ class teams_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
     def update_team_model(self,data,team_id):
         try:
             self.cursor.execute("UPDATE teams SET team='"+data["team"]+"', team_logo='"+data["team_logo"]+"', country_id="+data["country_id"]+" WHERE id="+str(team_id))
@@ -42,6 +45,7 @@ class teams_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+            
             
     def delete_team_model(self,team_id):
         try:

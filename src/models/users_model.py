@@ -25,6 +25,7 @@ class users_model:
         except Exception as e:
             return make_response({"Error":str(e)},500)
 
+
     def add_user_model(self,data):
         try:
             self.cursor.execute("INSERT INTO users(full_name,profile_picture,email,password,phone_no) VALUES('"+data["full_name"]+"','"+data["profile_picture"]+"','"+data["email"]+"','"+data["password"]+"',"+data["phone_no"]+")")
@@ -32,6 +33,7 @@ class users_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+        
             
     def list_user_model(self):
         try:
@@ -41,6 +43,7 @@ class users_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+         
             
     def read_single_user_model(self,id):
         try:
@@ -50,6 +53,7 @@ class users_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+         
             
     def update_user_model(self,data,id):
         try:
@@ -58,6 +62,7 @@ class users_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+          
             
     def delete_user_model(self,id):
         try:

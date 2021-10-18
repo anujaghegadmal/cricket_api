@@ -6,8 +6,8 @@ import time
 
 obj = users_model()
 
+# User Login
 @app.route("/users/login", methods=["POST"])
-# @cross_origin()
 def login():
     try:
         data=request.form.to_dict()
@@ -18,7 +18,7 @@ def login():
         print(e)
         return make_response({"Error":"Contact developer"},500)
     
-    
+# Add User
 @app.route("/users/create", methods=["POST"])
 def add_user():
     try:
@@ -28,7 +28,7 @@ def add_user():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
         
-# upload_profile_picture() used to upload profile_picture of players as well
+# upload_profile_picture() used to upload profile_picture of users as well as players
 @app.route("/users/upload_profile_picture", methods=["POST"])
 @token_authenticator()
 def upload_profile_picture():
@@ -39,6 +39,7 @@ def upload_profile_picture():
     file.save(os.path.join(app.root_path+"/profile_pictures",final_filename))
     return make_response({"filename":"profile_pictures/"+final_filename},200)
 
+# Read Users
 @app.route("/users/read")
 @token_authenticator()
 def list_user():
@@ -48,6 +49,7 @@ def list_user():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
     
+# Read Single User
 @app.route("/users/read_single_user")
 @token_authenticator()
 def read_single_user():
@@ -57,7 +59,8 @@ def read_single_user():
     
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
-        
+     
+# Update User
 @app.route("/users/update", methods=["POST"])
 @token_authenticator()
 def update_user():
@@ -68,6 +71,7 @@ def update_user():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
 
+# Delete User
 @app.route("/users/delete")
 @token_authenticator()
 def delete_user():

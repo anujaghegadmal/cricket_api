@@ -6,6 +6,7 @@ import time
 
 obj = countries_model()
 
+# Add Country
 @app.route("/countries/create", methods=["POST"])
 @token_authenticator()
 def add_country():
@@ -16,6 +17,7 @@ def add_country():
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
 
+# Upload Country Flag
 @app.route("/countries/upload_flag", methods=["POST"])
 @token_authenticator()
 def upload_flag():
@@ -26,6 +28,7 @@ def upload_flag():
     file.save(os.path.join(app.root_path+"/flags",final_filename))
     return make_response({"filename":"flags/"+final_filename},200)
 
+# Read Countries
 @app.route("/countries/read")
 def list_countries():
     try:
@@ -33,7 +36,8 @@ def list_countries():
     
     except Exception as e:
         make_response({"Error":"Contact developer"},500)
-        
+      
+# Update Country
 @app.route("/countries/update/<country_id>", methods=["POST"])
 @token_authenticator()
 def update_country(country_id):
@@ -44,6 +48,7 @@ def update_country(country_id):
     except Exception as e:
         make_response({"Error":"Contact developer"},500) 
 
+# Delete Country
 @app.route("/countries/delete/<country_id>")
 @token_authenticator()
 def delete_country(country_id):

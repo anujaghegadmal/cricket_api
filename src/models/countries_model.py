@@ -17,6 +17,7 @@ class countries_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
     def list_countries_model(self):
         try:
             self.cursor.execute("SELECT * FROM countries")
@@ -26,6 +27,7 @@ class countries_model:
         except Exception as e:
             make_response({"Error":str(e)},500)
             
+            
     def update_country_model(self,data,country_id):
         try:
             self.cursor.execute("UPDATE countries SET country='"+data["country"]+"', flag='"+data["flag"]+"' WHERE id="+str(country_id))
@@ -33,6 +35,7 @@ class countries_model:
         
         except Exception as e:
             make_response({"Error":str(e)},500)
+            
             
     def delete_country_model(self,country_id):
         try:
